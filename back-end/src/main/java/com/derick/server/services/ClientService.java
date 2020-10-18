@@ -65,7 +65,7 @@ public class ClientService {
     }
 
     public Client fromDTO(NewClientDTO dto) {
-        Client client = new Client(null, dto.getName(), dto.getEmail(), ClientRole.toEnum(dto.getUserType()), bCryptPasswordEncoder.encode(dto.getPassword()));
+        Client client = new Client(null, dto.getName(), dto.getEmail(), ClientRole.toEnum(dto.getRole()), bCryptPasswordEncoder.encode(dto.getPassword()));
         return client;
     }
 

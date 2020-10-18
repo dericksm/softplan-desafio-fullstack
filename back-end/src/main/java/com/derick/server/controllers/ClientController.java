@@ -1,7 +1,7 @@
 package com.derick.server.controllers;
 
-import com.derick.server.domain.dto.NewClientDTO;
 import com.derick.server.domain.dto.ClientDTO;
+import com.derick.server.domain.dto.NewClientDTO;
 import com.derick.server.domain.entities.Client;
 import com.derick.server.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,19 +10,20 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping(value = "/users")
-public class UserController {
+@RequestMapping(value = "/clients")
+public class ClientController {
 
     @Autowired
     private ClientService clientService;
 
     @PostMapping
-    public ResponseEntity<Client> insert(@RequestBody NewClientDTO userDTO) {
+    public ResponseEntity<Client> insert(@Valid @RequestBody NewClientDTO userDTO) {
         Client client = clientService.fromDTO(userDTO);
         client = clientService.insert(client);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -31,9 +32,10 @@ public class UserController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Client> findById(@PathVariable Integer id) {
+    public ResponseEntity<ClientDTO> findById(@PathVariable Integer id) {
         Client client = clientService.findById(id);
-        return ResponseEntity.ok().body(client);
+        ClientDTO clientDTO = new ClientDTO(client);
+        return ResponseEntity.ok().body(clientDTO);
     }
 
     @GetMapping

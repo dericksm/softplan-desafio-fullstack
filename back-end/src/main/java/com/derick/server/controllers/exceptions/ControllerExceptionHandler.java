@@ -1,5 +1,6 @@
 package com.derick.server.controllers.exceptions;
 
+import com.derick.server.services.exceptions.DataIntegrityException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -23,5 +24,10 @@ public class ControllerExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
 
+    @ExceptionHandler(DataIntegrityException.class)
+    public ResponseEntity<StandardError> objectNotFound(DataIntegrityException ex, HttpServletRequest httpServletRequest){
+        StandardError error = new StandardError(HttpStatus.BAD_REQUEST.value(), ex.getMessage(), System.currentTimeMillis(), httpServletRequest.getRequestURI());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
 
 }

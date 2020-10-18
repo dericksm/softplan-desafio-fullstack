@@ -6,7 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -19,10 +21,15 @@ public class ProcessDTO implements Serializable {
 
     private String feedback;
 
-    private List<ClientDTO> responsibleUsers;
+    @NotEmpty
+    private String name;
+
+    @NotEmpty
+    private List<ClientDTO> responsibleUsers = new ArrayList<>();
 
     public ProcessDTO(Process process){
         this.id = process.getId();
         this.feedback = process.getFeedback();
+        this.name = process.getName();
     }
 }

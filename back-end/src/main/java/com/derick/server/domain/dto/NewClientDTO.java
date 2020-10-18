@@ -22,11 +22,11 @@ public class NewClientDTO implements Serializable {
     private String name;
 
     @NotEmpty(message = "E-mail obrigatório")
-    @Email(message = "Invalid e-mail format")
+    @Email(message = "Formato de e-mail inválido")
     private String email;
 
     @NotEmpty(message = "Senha obrigatória")
     private String password;
 
-    private Integer userType;
+    private Integer role;
 }

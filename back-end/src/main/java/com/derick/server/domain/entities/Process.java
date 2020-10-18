@@ -23,12 +23,15 @@ public class Process implements Serializable {
 
     private String feedback;
 
+    private String name;
+
     @OneToMany(cascade = CascadeType.ALL)
     private List<Client> responsibleClients = new ArrayList<>();
 
     private Boolean finalized;
 
-    public Process(String feedback){
+    public Process(String name, String feedback){
+        this.name = name;
         this.feedback = feedback;
     }
 }

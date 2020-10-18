@@ -27,7 +27,7 @@ public class UserInsertValidator implements ConstraintValidator<UserInsert, NewC
 
 		Client aux = clientRepository.findByEmail(objDto.getEmail());
 		if (aux != null) {
-			list.add(new FieldMessage("email", "E-mail already exists"));
+			list.add(new FieldMessage("email", "E-mail já está em uso"));
 		}
 		
 		for (FieldMessage e : list) {

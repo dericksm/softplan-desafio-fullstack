@@ -72,10 +72,9 @@ public class ProcessController {
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping(value = "/{id}/finish-process")
-    public ResponseEntity<Void> finishProcess(@PathVariable Integer id, @RequestBody ProcessDTO processDTO) {
-        Process process = processService.fromDTO(processDTO);
-        process.setId(id);
+    @GetMapping(value = "/{id}/finish-process")
+    public ResponseEntity<Void> finishProcess(@PathVariable Integer id) {
+        Process process = processService.findById(id);
         process = processService.finishProcess(process);
         return ResponseEntity.noContent().build();
     }

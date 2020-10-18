@@ -27,8 +27,12 @@ public class ClientDTO implements Serializable {
     @Email(message = "Invalid e-mail format")
     private String email;
 
+    private Integer role;
+
     public ClientDTO(Client client){
+        this.id = client.getId();
         this.name = client.getName();
         this.email = client.getEmail();
+        this.role = client.getRole().getValue();
     }
 }

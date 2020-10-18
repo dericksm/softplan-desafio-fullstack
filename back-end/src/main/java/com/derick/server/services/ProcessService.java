@@ -1,10 +1,12 @@
 package com.derick.server.services;
 
+import com.derick.server.controllers.exceptions.StandardError;
 import com.derick.server.domain.dto.ProcessDTO;
 import com.derick.server.domain.dto.ClientDTO;
 import com.derick.server.domain.entities.Client;
 import com.derick.server.domain.entities.Process;
 import com.derick.server.repositories.ProcessRepository;
+import com.derick.server.services.exceptions.DataIntegrityException;
 import com.derick.server.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,6 +22,9 @@ public class ProcessService {
 
     @Autowired
     private ProcessRepository processRepository;
+
+    @Autowired
+    private ClientService clientService;
 
     public Process findById(Integer id) {
         return processRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Process with id: " + id + " wasn't found!"));
@@ -47,10 +52,10 @@ public class ProcessService {
     }
 
     public Process finishProcess(Process process) {
-        Process newProcess = findById(process.getId());
-        newProcess.setFeedback(process.getFeedback());
-        newProcess.setFinalized(true);
-        return processRepository.save(newProcess);
+        if(process.getFeedback() == null) {
+            throw new DataIntegrityException("Não é possível finalizar um processo sem seu feedback");
+        }
+        return processRepository.save(process);
     }
 
     public List<Process> findByFinalizedFalse(){
@@ -59,14 +64,14 @@ public class ProcessService {
 
     public Process fromDTO(ProcessDTO dto) {
         List<Client> clientList = mapUserDTO(dto.getResponsibleUsers());
-        Process process = new Process(dto.getFeedback());
+        Process process = new Process(dto.getName(), dto.getFeedback());
         process.getResponsibleClients().addAll(clientList);
         return process;
     }
 
     public List<Client> mapUserDTO(List<ClientDTO> responsibleUsersDTO){
         return responsibleUsersDTO.stream().map(clientDTO -> {
-            return new Client(clientDTO.getId(), clientDTO.getName(), clientDTO.getEmail());
+            return clientService.findById(clientDTO.getId());
         }).collect(Collectors.toList());
     }
 
