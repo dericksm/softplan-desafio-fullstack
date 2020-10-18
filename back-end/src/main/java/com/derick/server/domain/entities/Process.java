@@ -23,8 +23,7 @@ public class Process implements Serializable {
 
     private String feedback;
 
-    @OneToMany
-    @JoinColumn(name = "user_id")
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Client> responsibleClients = new ArrayList<>();
 
     private Boolean finalized;

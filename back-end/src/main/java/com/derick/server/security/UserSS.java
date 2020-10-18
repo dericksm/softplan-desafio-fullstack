@@ -5,9 +5,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Arrays;
 import java.util.Collection;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 public class UserSS implements UserDetails {
 	private static final long serialVersionUID = 1L;
@@ -20,12 +19,12 @@ public class UserSS implements UserDetails {
 	public UserSS() {
 	}
 	
-	public UserSS(Integer id, String email, String password, Set<ClientRole> clientRoles) {
+	public UserSS(Integer id, String email, String password, ClientRole clientRole) {
 		super();
 		this.id = id;
 		this.email = email;
 		this.password = password;
-		this.authorities = clientRoles.stream().map(x -> new SimpleGrantedAuthority(x.getDescription())).collect(Collectors.toList());
+		this.authorities = Arrays.asList(new SimpleGrantedAuthority(clientRole.getDescription()));
 	}
 
 	public Integer getId() {

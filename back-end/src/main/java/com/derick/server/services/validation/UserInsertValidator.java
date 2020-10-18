@@ -3,7 +3,7 @@ package com.derick.server.services.validation;
 import com.derick.server.controllers.exceptions.FieldMessage;
 import com.derick.server.domain.dto.NewClientDTO;
 import com.derick.server.domain.entities.Client;
-import com.derick.server.repositories.UserRepository;
+import com.derick.server.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.ConstraintValidator;
@@ -14,7 +14,7 @@ import java.util.List;
 public class UserInsertValidator implements ConstraintValidator<UserInsert, NewClientDTO> {
 
 	@Autowired
-	private UserRepository userRepository;
+	private ClientRepository clientRepository;
 	
 	@Override
 	public void initialize(UserInsert ann) {
@@ -25,7 +25,7 @@ public class UserInsertValidator implements ConstraintValidator<UserInsert, NewC
 		
 		List<FieldMessage> list = new ArrayList<>();
 
-		Client aux = userRepository.findByEmail(objDto.getEmail());
+		Client aux = clientRepository.findByEmail(objDto.getEmail());
 		if (aux != null) {
 			list.add(new FieldMessage("email", "E-mail already exists"));
 		}

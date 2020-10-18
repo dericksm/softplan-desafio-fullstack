@@ -32,16 +32,14 @@ public class Client implements Serializable {
     @JsonIgnore
     private String password;
 
-    @ElementCollection(fetch=FetchType.EAGER)
-    @CollectionTable(name="roles")
-    private Set<Integer> roles = new HashSet<>();
-
+    private ClientRole role;
 
     public Client(Integer id, String name, String email, ClientRole clientRole, String password) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
+        this.role = clientRole;
     }
 
     public Client(String name, String email){
@@ -53,13 +51,5 @@ public class Client implements Serializable {
         this.id = id;
         this.name = name;
         this.email = email;
-    }
-
-    public Set<ClientRole> getRoles() {
-        return this.roles.stream().map(role -> ClientRole.toEnum(role)).collect(Collectors.toSet());
-    }
-
-    public void addRole(ClientRole role) {
-        this.roles.add(role.getValue());
     }
 }

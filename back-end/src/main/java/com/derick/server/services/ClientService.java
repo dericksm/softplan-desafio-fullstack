@@ -4,7 +4,7 @@ import com.derick.server.domain.dto.NewClientDTO;
 import com.derick.server.domain.dto.ClientDTO;
 import com.derick.server.domain.entities.Client;
 import com.derick.server.domain.enums.ClientRole;
-import com.derick.server.repositories.UserRepository;
+import com.derick.server.repositories.ClientRepository;
 import com.derick.server.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -20,40 +20,40 @@ import java.util.List;
 public class ClientService {
 
     @Autowired
-    private UserRepository userRepository;
+    private ClientRepository clientRepository;
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public Client findById(Integer id) {
-        return userRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("User with id: " + id + " wasn't found!"));
+        return clientRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("User with id: " + id + " wasn't found!"));
     }
 
     public List<Client> findAll() {
-        return userRepository.findAll();
+        return clientRepository.findAll();
     }
 
     public Page<Client> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
         PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
-        return userRepository.findAll(pageRequest);
+        return clientRepository.findAll(pageRequest);
     }
 
     public Client insert(Client client) {
         client.setId(null);
-        client = userRepository.save(client);
+        client = clientRepository.save(client);
         return client;
     }
 
     public Client update(Client client) {
         Client newClient = findById(client.getId());
         updateUserData(newClient, client);
-        return userRepository.save(newClient);
+        return clientRepository.save(newClient);
     }
 
     public void delete(Integer id) {
         findById(id);
         try {
-            userRepository.deleteById(id);
+            clientRepository.deleteById(id);
         } catch (DataIntegrityViolationException e) {
             throw new DataIntegrityViolationException("It isn't possible to delete a entity with relationships to another entities");
         }
