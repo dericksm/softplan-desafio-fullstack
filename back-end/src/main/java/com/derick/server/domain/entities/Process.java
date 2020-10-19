@@ -25,10 +25,14 @@ public class Process implements Serializable {
 
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToMany
+    @JoinTable(
+            name = "process_clients",
+            joinColumns = @JoinColumn(name = "process_id"),
+            inverseJoinColumns = @JoinColumn(name = "client_id"))
     private List<Client> responsibleClients = new ArrayList<>();
 
-    private Boolean finalized;
+    private Boolean finalized = false;
 
     public Process(String name, String feedback){
         this.name = name;

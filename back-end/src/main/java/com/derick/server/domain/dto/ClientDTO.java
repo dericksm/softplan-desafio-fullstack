@@ -24,7 +24,7 @@ public class ClientDTO implements Serializable {
     private String name;
 
     @NotEmpty(message = "E-mail obrigatório")
-    @Email(message = "Invalid e-mail format")
+    @Email(message = "Formato de e-mail inválido")
     private String email;
 
     private Integer role;

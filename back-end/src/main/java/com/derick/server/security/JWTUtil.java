@@ -43,7 +43,7 @@ public class JWTUtil {
                 .compact();
     }
 
-    public boolean tokenValido(String token) {
+    public boolean validToken(String token) {
         Claims claims = getClaims(token);
         if (claims != null) {
             String username = claims.getSubject();

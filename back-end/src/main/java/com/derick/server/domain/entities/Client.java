@@ -9,6 +9,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -30,6 +32,10 @@ public class Client implements Serializable {
     private String password;
 
     private ClientRole role;
+
+    @ManyToMany(mappedBy = "responsibleClients")
+    @JsonIgnore
+    private List<Process> clientProcesses = new ArrayList<>();
 
     public Client(Integer id, String name, String email, ClientRole clientRole, String password) {
         this.id = id;

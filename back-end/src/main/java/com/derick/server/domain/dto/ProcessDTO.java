@@ -24,12 +24,15 @@ public class ProcessDTO implements Serializable {
     @NotEmpty
     private String name;
 
+    private Boolean finalized = false;
+
     @NotEmpty
-    private List<ClientDTO> responsibleUsers = new ArrayList<>();
+    private List<ClientDTO> responsibleClients = new ArrayList<>();
 
     public ProcessDTO(Process process){
         this.id = process.getId();
         this.feedback = process.getFeedback();
         this.name = process.getName();
+        this.finalized = process.getFinalized();
     }
 }
