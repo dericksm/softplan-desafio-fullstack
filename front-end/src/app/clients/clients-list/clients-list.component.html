@@ -1,0 +1,64 @@
+<h1 class="mt-4">Usuários</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Usuários Cadastrados</li>
+</ol>
+<div class="container">
+    <div class="row">
+
+        <div class="row" *ngIf="showMessage">
+            <div class="col-md-12">
+                <div class="alert" [class]="[error ? 'alert-danger' : 'alert-success']" role="alert" *ngFor="let message of messages">
+                    {{ message }}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <button class="btn btn-warning" routerLink="/clients/form"><i class="fa fa-plus fa-fw"></i>Novo</button>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-condensed table-hover">
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>E-mail</th>
+                    <th>Tipo</th>
+                </tr>
+                <tbody>
+                    <tr *ngFor="let client of clients">
+                        <td>{{client.id}}</td>
+                        <td>{{client.name}}</td>
+                        <td>{{client.email}}</td>
+                        <td>{{roleTypeHelper(client.role)}}</td>
+                        <td>
+                            <button class="btn btn-primary mr-1" routerLink="/clients/form/{{client.id}}"><i
+                                    class="fa fa-edit"></i></button>
+                            <button (click)="delete(client)" class="btn btn-danger" data-toggle="modal" data-target="#modalRemove"><i class="fa fa-trash"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+    <div id="modalRemove" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6>Deseja deletar o cliente?</h6>
+                </div>
+                <div class="modal-body">
+                    {{selectedClient.name}}
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default mr-1" data-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-success" (click)="deleteClient()" data-dismiss="modal">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

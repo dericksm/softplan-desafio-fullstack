@@ -1,0 +1,52 @@
+<h1 class="mt-4">Serviços</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrum-bitem active">Novo Processo</li>
+</ol>
+<form [formGroup]="formGroup">
+    <div class="row" *ngIf="showMessage">
+        <div class="col-md-12">
+            <div class="alert" [class]="[error ? 'alert-danger' : 'alert-success']" role="alert" *ngFor="let message of messages">
+                {{ message }}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Nome do Processo:</label>
+                <input formControlName="name" type="text" class="form-control" required />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12" id="grid">
+            <label>Usuários vinculados:</label>
+            <dx-data-grid #dataGridRef id="grid-container" [dataSource]="clients" keyExpr="id" [showBorders]="true" [selectedRowKeys]="selectedRowsKeys">
+                <dxo-selection [showCheckBoxesMode]="'always'" mode="multiple">
+                </dxo-selection>
+                <dxo-paging [pageSize]="10"></dxo-paging>
+                <dxo-filter-row [visible]="true"></dxo-filter-row>
+                <dxi-column alignment="center" dataField="id" caption="ID"></dxi-column>
+                <dxi-column alignment="center" dataField="name" caption="Nome"></dxi-column>
+                <dxi-column alignment="center" dataField="email" caption="Email"></dxi-column>
+                <dxi-column alignment="center" dataField="role" caption="Tipo de Usuário" [calculateCellValue]="roleTypeHelper" custom></dxi-column>
+            </dx-data-grid>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-3">
+            <button type="submit" class="btn btn-success" (click)="save()" [disabled]="formGroup.invalid">
+                <i class="fa fa-save"></i> Salvar
+            </button>
+
+            <button type="submit" class="btn btn-primary" hidden="id == null">
+                <i class="fa fa-refresh"></i> Editar
+            </button>
+
+            <button type="button" class="btn btn-danger ml-1" routerLink="/process/list">
+                <i class="fa fa-arrow-alt-circle-left"></i> Voltar
+            </button>
+        </div>
+    </div>
+</form>
