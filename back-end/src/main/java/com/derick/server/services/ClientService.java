@@ -1,9 +1,9 @@
 package com.derick.server.services;
 
-import com.derick.server.domain.dto.ClientDTO;
-import com.derick.server.domain.dto.NewClientDTO;
-import com.derick.server.domain.entities.Client;
-import com.derick.server.domain.enums.ClientRole;
+import com.derick.server.models.dto.ClientDTO;
+import com.derick.server.models.dto.NewClientDTO;
+import com.derick.server.models.entities.Client;
+import com.derick.server.models.enums.ClientRole;
 import com.derick.server.repositories.ClientRepository;
 import com.derick.server.services.exceptions.DataIntegrityException;
 import com.derick.server.services.exceptions.ObjectNotFoundException;

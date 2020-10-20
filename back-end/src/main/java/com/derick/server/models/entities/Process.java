@@ -1,4 +1,4 @@
-package com.derick.server.domain.entities;
+package com.derick.server.models.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

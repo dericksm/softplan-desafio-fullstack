@@ -1,8 +1,8 @@
 package com.derick.server.services.validation;
 
 import com.derick.server.controllers.exceptions.FieldMessage;
-import com.derick.server.domain.dto.NewClientDTO;
-import com.derick.server.domain.entities.Client;
+import com.derick.server.models.dto.NewClientDTO;
+import com.derick.server.models.entities.Client;
 import com.derick.server.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 

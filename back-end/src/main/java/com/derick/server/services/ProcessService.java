@@ -1,10 +1,10 @@
 package com.derick.server.services;
 
-import com.derick.server.domain.dto.ClientDTO;
-import com.derick.server.domain.dto.ProcessDTO;
-import com.derick.server.domain.entities.Client;
-import com.derick.server.domain.entities.Process;
-import com.derick.server.domain.enums.ClientRole;
+import com.derick.server.models.dto.ClientDTO;
+import com.derick.server.models.dto.ProcessDTO;
+import com.derick.server.models.entities.Client;
+import com.derick.server.models.entities.Process;
+import com.derick.server.models.enums.ClientRole;
 import com.derick.server.repositories.ProcessRepository;
 import com.derick.server.security.UserSS;
 import com.derick.server.services.exceptions.DataIntegrityException;
@@ -64,7 +64,7 @@ public class ProcessService {
     }
 
     public Process finishProcess(Process process) {
-        if (process.getFeedback() == null) {
+        if (process.getFeedback() == null || process.getFeedback().isEmpty()) {
             throw new DataIntegrityException("Não é possível finalizar um processo sem seu feedback");
         }
         process.setFinalized(true);

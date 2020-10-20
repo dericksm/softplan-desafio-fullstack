@@ -1,7 +1,7 @@
 package com.derick.server.config;
 
-import com.derick.server.domain.entities.Client;
-import com.derick.server.domain.enums.ClientRole;
+import com.derick.server.models.entities.Client;
+import com.derick.server.models.enums.ClientRole;
 import com.derick.server.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;

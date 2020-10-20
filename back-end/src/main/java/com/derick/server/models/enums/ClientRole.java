@@ -1,4 +1,4 @@
-package com.derick.server.domain.enums;
+package com.derick.server.models.enums;
 
 public enum ClientRole {
     ADMIN(0, "ADMIN"),

@@ -1,4 +1,4 @@
-package com.derick.server.domain.dto;
+package com.derick.server.models.dto;
 
 import com.derick.server.services.validation.UserInsert;
 import lombok.*;

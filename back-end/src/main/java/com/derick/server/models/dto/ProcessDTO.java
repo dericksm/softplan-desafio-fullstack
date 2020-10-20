@@ -1,6 +1,6 @@
-package com.derick.server.domain.dto;
+package com.derick.server.models.dto;
 
-import com.derick.server.domain.entities.Process;
+import com.derick.server.models.entities.Process;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

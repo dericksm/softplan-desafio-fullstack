@@ -1,6 +1,6 @@
 package com.derick.server.security;
 
-import com.derick.server.domain.dto.CredentialsDTO;
+import com.derick.server.models.dto.CredentialsDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

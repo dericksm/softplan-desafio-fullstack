@@ -1,11 +1,10 @@
 package com.derick.server.controllers;
 
-import com.derick.server.domain.dto.ClientDTO;
-import com.derick.server.domain.dto.NewClientDTO;
-import com.derick.server.domain.entities.Client;
+import com.derick.server.models.dto.ClientDTO;
+import com.derick.server.models.dto.NewClientDTO;
+import com.derick.server.models.entities.Client;
 import com.derick.server.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;

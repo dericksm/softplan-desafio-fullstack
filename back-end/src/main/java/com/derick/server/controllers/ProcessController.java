@@ -1,22 +1,17 @@
 package com.derick.server.controllers;
 
-import com.derick.server.domain.dto.ClientDTO;
-import com.derick.server.domain.dto.ProcessDTO;
-import com.derick.server.domain.entities.Client;
-import com.derick.server.domain.entities.Process;
-import com.derick.server.domain.enums.ClientRole;
-import com.derick.server.security.UserSS;
+import com.derick.server.models.dto.ClientDTO;
+import com.derick.server.models.dto.ProcessDTO;
+import com.derick.server.models.entities.Client;
+import com.derick.server.models.entities.Process;
 import com.derick.server.services.ProcessService;
-import com.derick.server.services.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 

@@ -1,4 +1,4 @@
-package com.derick.server.domain.dto;
+package com.derick.server.models.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

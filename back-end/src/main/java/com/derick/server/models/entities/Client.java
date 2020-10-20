@@ -1,6 +1,6 @@
-package com.derick.server.domain.entities;
+package com.derick.server.models.entities;
 
-import com.derick.server.domain.enums.ClientRole;
+import com.derick.server.models.enums.ClientRole;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

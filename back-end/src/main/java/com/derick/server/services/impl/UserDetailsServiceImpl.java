@@ -1,6 +1,6 @@
 package com.derick.server.services.impl;
 
-import com.derick.server.domain.entities.Client;
+import com.derick.server.models.entities.Client;
 import com.derick.server.repositories.ClientRepository;
 import com.derick.server.security.UserSS;
 import org.springframework.beans.factory.annotation.Autowired;

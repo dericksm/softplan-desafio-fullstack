@@ -1,7 +1,7 @@
 package com.derick.server.repositories;
 
-import com.derick.server.domain.entities.Client;
-import com.derick.server.domain.entities.Process;
+import com.derick.server.models.entities.Client;
+import com.derick.server.models.entities.Process;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

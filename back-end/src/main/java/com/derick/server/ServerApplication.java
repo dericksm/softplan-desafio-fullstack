@@ -6,8 +6,6 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
 @SpringBootApplication
-@EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class ServerApplication {
 
 	public static void main(String[] args) {

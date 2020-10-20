@@ -1,6 +1,6 @@
 package com.derick.server.security;
 
-import com.derick.server.domain.enums.ClientRole;
+import com.derick.server.models.enums.ClientRole;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
