@@ -7,6 +7,7 @@ import com.derick.server.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -23,6 +24,7 @@ public class ClientController {
     private ClientService clientService;
 
     @PostMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Client> insert(@Valid @RequestBody NewClientDTO userDTO) {
         Client client = clientService.fromDTO(userDTO);
         client = clientService.insert(client);
@@ -46,6 +48,7 @@ public class ClientController {
     }
 
     @PutMapping(value = "/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Void> update(@RequestBody ClientDTO clientDTO, @PathVariable Integer id) {
         Client client = clientService.fromDTO(clientDTO);
         client.setId(id);
@@ -54,6 +57,7 @@ public class ClientController {
     }
 
     @DeleteMapping(value = "/{id}")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<Void> delete(@PathVariable Integer id) {
         clientService.delete(id);
         return ResponseEntity.noContent().build();

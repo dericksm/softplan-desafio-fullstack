@@ -11,6 +11,7 @@ import com.derick.server.services.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -27,6 +28,7 @@ public class ProcessController {
     private ProcessService processService;
 
     @PostMapping
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'TRIADOR')")
     public ResponseEntity<ProcessDTO> insert(@RequestBody ProcessDTO processDTO) {
         Process process = processService.fromDTO(processDTO);
         process = processService.insert(process);
@@ -53,6 +55,7 @@ public class ProcessController {
     }
 
     @PutMapping(value = "/{id}/responsible-clients")
+    @PreAuthorize("hasAnyAuthority('ADMIN', 'TRIADOR')")
     public ResponseEntity<Void> updateResponsibleUsers(@PathVariable Integer id, @RequestBody List<ClientDTO> userListDTO) {
         List<Client> clientList = processService.mapUserDTO(userListDTO);
         processService.updateResponsibleUsers(id, clientList);

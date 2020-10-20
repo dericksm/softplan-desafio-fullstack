@@ -2,8 +2,8 @@ package com.derick.server.domain.enums;
 
 public enum ClientRole {
     ADMIN(0, "ADMIN"),
-    USER_TRIATOR(1, "TRIATOR"),
-    USER_FINISHER(2, "FINISHER");
+    USER_TRIATOR(1, "TRIADOR"),
+    USER_FINISHER(2, "FINALIZADOR");
 
     private int value;
     private String description;
