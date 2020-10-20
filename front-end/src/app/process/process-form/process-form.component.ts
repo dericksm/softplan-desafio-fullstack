@@ -63,7 +63,7 @@ export class ProcessFormComponent implements OnInit, OnDestroy {
   createForm() {
     this.formGroup = this.formBuilder.group({
       id: [""],
-      name: ["nAME", Validators.required],
+      name: ["", Validators.required],
       feedback: [""],
     });
   }
