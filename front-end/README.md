@@ -24,6 +24,10 @@ $ npm install
 $ ng serve
 
 ```
+## System acess
+To access the system the default user with ADMIN Role is: <br>
+E-mail: derick_sm@hotmail.com <br>
+Password: 123456
 
 ## About :mag_right:
 Since this is a "simple project" I've choose not to use state management and I also didn't manage the Observables with the best RxJS operators
